@@ -69,6 +69,10 @@ angular.module('clickbaitApp')
       return encodeURIComponent($scope.result()+' http://nicnocquee.com/Clickbait-Title-Generator');
     };
 
+    $scope.textToTweetForTitle = function(title) {
+      return encodeURIComponent(title+' http://nicnocquee.com/Clickbait-Title-Generator');
+    };
+
     $scope.reloadPool = function () {
       var req = {
         method: 'GET',

@@ -11,6 +11,6 @@
 <div ng-show="poolDisplay">
   <h3>Recent Titles</h3>
   <div ng-repeat="title in titles">
-    {{title.title}}
+    <span am-time-ago="title.createdAt" class="createdAt"></span> {{title.title}} <a href="https://twitter.com/intent/tweet?text={{textToTweetForTitle(title.title)}}" target="_blank">Tweet this</a>
   </div>
 </div>
