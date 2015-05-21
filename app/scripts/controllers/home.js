@@ -95,7 +95,7 @@ angular.module('clickbaitApp')
     $scope.reloadPool = function () {
       var req = {
         method: 'GET',
-        url: 'https://api.parse.com/1/classes/Pool?order=-createdAt&limit=100',
+        url: 'https://api.parse.com/1/classes/Pool?order=createdAt&limit=100',
         headers: {
           'X-Parse-Application-Id': 'gi94Kt6C7BZvtWdu94TOwtwLEl9fT018dye2zJHj',
           'X-Parse-REST-API-Key': 'UgdcX3NKVt6r44Kakezy8kPNDPS6V4NAH8vL1n4q',
