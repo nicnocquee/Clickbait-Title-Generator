@@ -69,6 +69,30 @@ angular.module('clickbaitApp')
       return encodeURIComponent($scope.result()+' http://nicnocquee.com/Clickbait-Title-Generator');
     };
 
+    $scope.reloadPool = function () {
+      var req = {
+        method: 'GET',
+        url: 'https://api.parse.com/1/classes/Pool?order=-createdAt&limit=100',
+        headers: {
+          'X-Parse-Application-Id': 'gi94Kt6C7BZvtWdu94TOwtwLEl9fT018dye2zJHj',
+          'X-Parse-REST-API-Key': 'UgdcX3NKVt6r44Kakezy8kPNDPS6V4NAH8vL1n4q',
+          'Content-Type': 'application/json'
+        },
+      };
+
+      $http(req).success(function (data) {
+        var results = data.results;
+        $scope.titles = results;
+        if ($scope.titles.length > 0) {
+          $scope.poolDisplay = true;
+        }
+      }).error(function () {
+
+      });
+    };
+
+    $scope.reloadPool();
+
     $scope.submitToPool = function () {
       var title = $scope.result();
 
@@ -86,36 +110,9 @@ angular.module('clickbaitApp')
       };
 
       $http(req).success(function () {
-        $scope.titles.unshift(title);
+        $scope.reloadPool();
       }).error(function () {
 
       });
     };
-
-    $scope.reloadPool = function () {
-      var req = {
-        method: 'GET',
-        url: 'https://api.parse.com/1/classes/Pool?order=createdAt&limit=100',
-        headers: {
-          'X-Parse-Application-Id': 'gi94Kt6C7BZvtWdu94TOwtwLEl9fT018dye2zJHj',
-          'X-Parse-REST-API-Key': 'UgdcX3NKVt6r44Kakezy8kPNDPS6V4NAH8vL1n4q',
-          'Content-Type': 'application/json'
-        },
-      };
-
-      $http(req).success(function (data) {
-        var results = data.results;
-        console.log(results);
-        results.forEach(function (result) {
-          $scope.titles.unshift(result.title);
-        });
-        if ($scope.titles.length > 0) {
-          $scope.poolDisplay = true;
-        }
-      }).error(function () {
-
-      });
-    };
-
-    $scope.reloadPool();
   });
