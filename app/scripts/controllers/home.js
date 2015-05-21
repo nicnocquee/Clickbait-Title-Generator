@@ -15,6 +15,9 @@ angular.module('clickbaitApp')
       'Karma'
     ];
 
+    $scope.titles = [];
+    $scope.poolDisplay = false;
+
     $scope.buttonDisplay = false;
 
     $scope.baits = ['At first you\'ll be intrigued. Then you\'ll be blown away.',
@@ -67,6 +70,8 @@ angular.module('clickbaitApp')
     };
 
     $scope.submitToPool = function () {
+      var title = $scope.result();
+
       var req = {
         method: 'POST',
         url: 'https://api.parse.com/1/classes/Pool',
@@ -76,14 +81,41 @@ angular.module('clickbaitApp')
           'Content-Type': 'application/json'
         },
         data: {
-          'title': $scope.result()
+          'title': title
         }
       };
 
-      $http(req).success(function (data, status, headers, config) {
-
-      }).error(function (data, status, headers, config) {
+      $http(req).success(function () {
+        $scope.titles.unshift(title);
+      }).error(function () {
 
       });
     };
+
+    $scope.reloadPool = function () {
+      var req = {
+        method: 'GET',
+        url: 'https://api.parse.com/1/classes/Pool?order=-createdAt&limit=100',
+        headers: {
+          'X-Parse-Application-Id': 'gi94Kt6C7BZvtWdu94TOwtwLEl9fT018dye2zJHj',
+          'X-Parse-REST-API-Key': 'UgdcX3NKVt6r44Kakezy8kPNDPS6V4NAH8vL1n4q',
+          'Content-Type': 'application/json'
+        },
+      };
+
+      $http(req).success(function (data) {
+        var results = data.results;
+        console.log(results);
+        results.forEach(function (result) {
+          $scope.titles.unshift(result.title);
+        });
+        if ($scope.titles.length > 0) {
+          $scope.poolDisplay = true;
+        }
+      }).error(function () {
+
+      });
+    };
+
+    $scope.reloadPool();
   });

@@ -7,3 +7,10 @@
   <a class="btn btn-info" href="https://twitter.com/intent/tweet?text={{textToTweet()}}" role="button" ng-show="buttonDisplay" target="_blank">Tweet</a>
   <button class="btn btn-default" ng-show="buttonDisplay" type="submit" ng-click="submitToPool()">Submit to the Pool</button>
 </p>
+
+<div ng-show="poolDisplay">
+  <h3>Recent Titles</h3>
+  <div ng-repeat="title in titles">
+    {{title}}
+  </div>
+</div>
