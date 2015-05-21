@@ -44,4 +44,8 @@ angular.module('clickbaitApp')
     };
 
     $scope.generate();
+
+    $scope.textToTweet = function() {
+      return encodeURIComponent($scope.result()+' http://nicnocquee.com/Clickbait-Title-Generator');
+    };
   });
