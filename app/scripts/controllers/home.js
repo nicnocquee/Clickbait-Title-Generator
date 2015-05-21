@@ -98,6 +98,7 @@ angular.module('clickbaitApp')
     $scope.reloadPool();
 
     $scope.submitToPool = function () {
+      $scope.submitDisabled = true;
       var title = $scope.result();
 
       var req = {
@@ -114,9 +115,10 @@ angular.module('clickbaitApp')
       };
 
       $http(req).success(function () {
+        $scope.submitDisabled = false;
         $scope.reloadPool();
       }).error(function () {
-
+        $scope.submitDisabled = false;
       });
     };
   });

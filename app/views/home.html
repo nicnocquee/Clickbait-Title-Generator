@@ -5,7 +5,7 @@
 <p>
   <button class="btn btn-default" ng-show="buttonDisplay" type="submit" ng-click="generate()">Generate</button>
   <a class="btn btn-info" href="https://twitter.com/intent/tweet?text={{textToTweet()}}" role="button" ng-show="buttonDisplay" target="_blank">Tweet</a>
-  <button class="btn btn-success" ng-show="buttonDisplay" type="submit" ng-click="submitToPool()">Submit to the Recent Titles</button>
+  <button class="btn btn-success" ng-show="buttonDisplay" type="submit" ng-click="submitToPool()" ng-disabled="submitDisabled">Submit to the Recent Titles</button>
 </p>
 
 <div ng-show="poolDisplay">
