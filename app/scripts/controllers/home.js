@@ -8,7 +8,7 @@
  * Controller of the clickbaitApp
  */
 angular.module('clickbaitApp')
-  .controller('HomeCtrl', function ($scope) {
+  .controller('HomeCtrl', function ($scope, $http) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -64,5 +64,26 @@ angular.module('clickbaitApp')
 
     $scope.textToTweet = function() {
       return encodeURIComponent($scope.result()+' http://nicnocquee.com/Clickbait-Title-Generator');
+    };
+
+    $scope.submitToPool = function () {
+      var req = {
+        method: 'POST',
+        url: 'https://api.parse.com/1/classes/Pool',
+        headers: {
+          'X-Parse-Application-Id': 'gi94Kt6C7BZvtWdu94TOwtwLEl9fT018dye2zJHj',
+          'X-Parse-REST-API-Key': 'UgdcX3NKVt6r44Kakezy8kPNDPS6V4NAH8vL1n4q',
+          'Content-Type': 'application/json'
+        },
+        data: {
+          'title': $scope.result()
+        }
+      };
+
+      $http(req).success(function (data, status, headers, config) {
+
+      }).error(function (data, status, headers, config) {
+
+      });
     };
   });
