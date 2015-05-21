@@ -29,6 +29,10 @@ body {
   padding-bottom: 19px;
 }
 
+.result {
+  font-size: 30px;
+}
+
 /* Custom page footer */
 .footer {
   margin-top: 20px;
