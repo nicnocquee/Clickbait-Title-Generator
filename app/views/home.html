@@ -1,8 +1,8 @@
-<p>Who? <input ng-model="who"></p>
-<p>Doing what? <input ng-model="doing"></p>
+<p>Who? <input ng-model="who" placeholder="A man, A woman, etc"></p>
+<p>Doing what? <input ng-model="doing" placeholder="sitting on the beach"></p>
 <p><span ng-bind="result()"></span>
 </p>
 <p>
   <button class="btn btn-default" ng-show="buttonDisplay" type="submit" ng-click="generate()">Generate</button>
-    <a class="btn btn-default" href="https://twitter.com/intent/tweet?text={{textToTweet()}}" role="button" ng-show="buttonDisplay" target="_blank">Tweet</a>
+    <a class="btn btn-info" href="https://twitter.com/intent/tweet?text={{textToTweet()}}" role="button" ng-show="buttonDisplay" target="_blank">Tweet</a>
 </p>
