@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'angularMoment'
+    'angularMoment',
+    'RestService'
   ])
   .config(function ($routeProvider) {
     $routeProvider
